@@ -46,52 +46,44 @@ const CreatePage = () => {
   };
 
   return (
-    <div className="min-h-screen bg-base-200">
+    <div className="min-h-screen pb-16">
       <Navbar />
-      <div className="container mx-auto px-4 py-8">
-        <div className="max-w-2xl mx-auto">
-          <Link to={"/"} className="btn btn-ghost mb-6">
-            <ArrowLeftIcon className="size-5" />
-            Back to Notes
-          </Link>
+      <div className="max-w-2xl mx-auto px-6 py-12">
+        <Link to={"/"} className="glass-btn text-sm py-1.5 px-4 rounded-lg font-medium mb-8 inline-flex">
+          <ArrowLeftIcon className="size-4" />
+          <span>Back to Notes</span>
+        </Link>
 
-          <div className="card bg-base-100">
-            <div className="card-body">
-              <h2 className="card-title text-2xl mb-4">Create New Note</h2>
-              <form onSubmit={handleSubmit}>
-                <div className="form-control mb-4">
-                  <label className="label">
-                    <span className="label-text">Title</span>
-                  </label>
-                  <input
-                    type="text"
-                    placeholder="Note Title"
-                    className="input input-bordered"
-                    value={title}
-                    onChange={(e) => setTitle(e.target.value)}
-                  />
-                </div>
-
-                <div className="form-control mb-4">
-                  <label className="label">
-                    <span className="label-text">Content</span>
-                  </label>
-                  <textarea
-                    placeholder="Write your note here..."
-                    className="textarea textarea-bordered h-32"
-                    value={content}
-                    onChange={(e) => setContent(e.target.value)}
-                  />
-                </div>
-
-                <div className="card-actions justify-end">
-                  <button type="submit" className="btn btn-primary" disabled={loading}>
-                    {loading ? "Creating..." : "Create Note"}
-                  </button>
-                </div>
-              </form>
+        <div className="glass-card p-8 rounded-2xl border border-white/[0.04]">
+          <h2 className="text-2xl font-bold text-white mb-6 tracking-tight">Create New Note</h2>
+          <form onSubmit={handleSubmit} className="flex flex-col gap-6">
+            <div className="flex flex-col gap-2">
+              <label className="text-zinc-400 text-xs font-semibold uppercase tracking-wider">Title</label>
+              <input
+                type="text"
+                placeholder="Note Title"
+                className="glass-input w-full text-base font-medium"
+                value={title}
+                onChange={(e) => setTitle(e.target.value)}
+              />
             </div>
-          </div>
+
+            <div className="flex flex-col gap-2">
+              <label className="text-zinc-400 text-xs font-semibold uppercase tracking-wider">Content</label>
+              <textarea
+                placeholder="Write your note here..."
+                className="glass-input w-full h-48 resize-none text-sm leading-relaxed"
+                value={content}
+                onChange={(e) => setContent(e.target.value)}
+              />
+            </div>
+
+            <div className="flex justify-end mt-4">
+              <button type="submit" className="glass-btn glass-btn-primary py-2 px-6 rounded-lg text-sm font-semibold" disabled={loading}>
+                {loading ? "Creating..." : "Create Note"}
+              </button>
+            </div>
+          </form>
         </div>
       </div>
     </div>

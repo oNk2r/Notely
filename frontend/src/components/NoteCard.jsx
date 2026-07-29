@@ -25,25 +25,28 @@ const NoteCard = ({ note, setNotes }) => {
   return (
     <Link
       to={`/notes/${note._id}`}
-      className="card bg-base-100 hover:shadow-lg transition-all duration-200 
-      border-t-4 border-solid border-[#00FF9D]"
+      className="glass-card flex flex-col justify-between p-6 rounded-2xl cursor-pointer"
     >
-      <div className="card-body">
-        <h3 className="card-title text-base-content">{note.title}</h3>
-        <p className="text-base-content/70 line-clamp-3">{note.content}</p>
-        <div className="card-actions justify-between items-center mt-4">
-          <span className="text-sm text-base-content/60">
-            {formatDate(new Date(note.createdAt))}
-          </span>
-          <div className="flex items-center gap-1">
+      <div>
+        <h3 className="text-lg font-semibold text-white mb-2 tracking-tight line-clamp-1">{note.title}</h3>
+        <p className="text-zinc-400 text-sm leading-relaxed line-clamp-3 mb-6">{note.content}</p>
+      </div>
+      
+      <div className="flex items-center justify-between border-t border-white/[0.04] pt-4 mt-auto">
+        <span className="text-xs text-zinc-500 font-medium">
+          {formatDate(new Date(note.createdAt))}
+        </span>
+        <div className="flex items-center gap-3">
+          <span className="text-zinc-500 hover:text-white transition-colors duration-200">
             <PenSquareIcon className="size-4" />
-            <button
-              className="btn btn-ghost btn-xs text-error"
-              onClick={(e) => handleDelete(e, note._id)}
-            >
-              <Trash2 className="size-4" />
-            </button>
-          </div>
+          </span>
+          <button
+            className="text-zinc-500 hover:text-red-400 transition-colors duration-200 p-1 hover:bg-white/[0.03] rounded-md"
+            onClick={(e) => handleDelete(e, note._id)}
+            title="Delete note"
+          >
+            <Trash2 className="size-4" />
+          </button>
         </div>
       </div>
     </Link>

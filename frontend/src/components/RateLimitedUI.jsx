@@ -1,19 +1,19 @@
-import { ZapIcon } from "lucide-react";
+import { ShieldAlertIcon } from "lucide-react";
 
 const RateLimitedUI = () => {
   return (
-    <div className="max-w-6xl mx-auto px-4 py-8">
-      <div className="bg-primary/10 border border-primary/30 rounded-lg shadow-md">
-        <div className="flex flex-col md:flex-row items-center p-6">
-          <div className="flex-shrink-0 bg-primary/20 p-4 rounded-full mb-4 md:mb-0 md:mr-6">
-            <ZapIcon className="size-10 text-primary" />
+    <div className="max-w-xl mx-auto px-4 py-12">
+      <div className="glass-card border-red-500/20 bg-red-500/[0.01] rounded-2xl p-8 text-center md:text-left">
+        <div className="flex flex-col md:flex-row items-center gap-6">
+          <div className="flex-shrink-0 bg-red-500/10 p-4 rounded-2xl border border-red-500/20">
+            <ShieldAlertIcon className="size-8 text-red-400" />
           </div>
-          <div className="flex-1 text-center md:text-left">
-            <h3 className="text-xl font-bold mb-2">Rate Limit Reached</h3>
-            <p className="text-base-content mb-1">
+          <div className="flex-1">
+            <h3 className="text-lg font-semibold text-white mb-2 tracking-tight">Rate Limit Reached</h3>
+            <p className="text-zinc-400 text-sm leading-relaxed mb-1">
               You've made too many requests in a short period. Please wait a moment.
             </p>
-            <p className="text-sm text-base-content/70">
+            <p className="text-zinc-500 text-xs font-medium">
               Try again in a few seconds for the best experience.
             </p>
           </div>

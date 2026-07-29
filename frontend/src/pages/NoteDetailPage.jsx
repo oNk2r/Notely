@@ -65,59 +65,56 @@ const NoteDetailPage = () => {
 
   if (loading) {
     return (
-      <div className="min-h-screen bg-base-200 flex items-center justify-center">
-        <LoaderIcon className="animate-spin size-10" />
+      <div className="min-h-screen flex flex-col items-center justify-center gap-4">
+        <div className="size-8 rounded-full border-2 border-zinc-700 border-t-white animate-spin"></div>
+        <div className="text-zinc-400 text-sm font-medium">Loading note...</div>
       </div>
     );
   }
 
   return (
-    <div className="min-h-screen bg-base-200">
-      <div className="container mx-auto px-4 py-8">
-        <div className="max-w-2xl mx-auto">
-          <div className="flex items-center justify-between mb-6">
-            <Link to="/" className="btn btn-ghost">
-              <ArrowLeftIcon className="h-5 w-5" />
-              Back to Notes
-            </Link>
-            <button onClick={handleDelete} className="btn btn-error btn-outline">
-              <Trash2Icon className="h-5 w-5" />
-              Delete Note
-            </button>
-          </div>
+    <div className="min-h-screen pb-16">
+      <div className="max-w-2xl mx-auto px-6 py-12">
+        <div className="flex items-center justify-between mb-8">
+          <Link to="/" className="glass-btn text-sm py-1.5 px-4 rounded-lg font-medium">
+            <ArrowLeftIcon className="size-4" />
+            <span>Back to Notes</span>
+          </Link>
+          <button onClick={handleDelete} className="glass-btn glass-btn-danger text-sm py-1.5 px-4 rounded-lg font-medium">
+            <Trash2Icon className="size-4" />
+            <span>Delete Note</span>
+          </button>
+        </div>
 
-          <div className="card bg-base-100">
-            <div className="card-body">
-              <div className="form-control mb-4">
-                <label className="label">
-                  <span className="label-text">Title</span>
-                </label>
-                <input
-                  type="text"
-                  placeholder="Note title"
-                  className="input input-bordered"
-                  value={note.title}
-                  onChange={(e) => setNote({ ...note, title: e.target.value })}
-                />
-              </div>
+        <div className="glass-card p-8 rounded-2xl border border-white/[0.04]">
+          <h2 className="text-2xl font-bold text-white mb-6 tracking-tight">Edit Note</h2>
+          
+          <div className="flex flex-col gap-6">
+            <div className="flex flex-col gap-2">
+              <label className="text-zinc-400 text-xs font-semibold uppercase tracking-wider">Title</label>
+              <input
+                type="text"
+                placeholder="Note title"
+                className="glass-input w-full text-base font-medium"
+                value={note.title}
+                onChange={(e) => setNote({ ...note, title: e.target.value })}
+              />
+            </div>
 
-              <div className="form-control mb-4">
-                <label className="label">
-                  <span className="label-text">Content</span>
-                </label>
-                <textarea
-                  placeholder="Write your note here..."
-                  className="textarea textarea-bordered h-32"
-                  value={note.content}
-                  onChange={(e) => setNote({ ...note, content: e.target.value })}
-                />
-              </div>
+            <div className="flex flex-col gap-2">
+              <label className="text-zinc-400 text-xs font-semibold uppercase tracking-wider">Content</label>
+              <textarea
+                placeholder="Write your note here..."
+                className="glass-input w-full h-48 resize-none text-sm leading-relaxed"
+                value={note.content}
+                onChange={(e) => setNote({ ...note, content: e.target.value })}
+              />
+            </div>
 
-              <div className="card-actions justify-end">
-                <button className="btn btn-primary" disabled={saving} onClick={handleSave}>
-                  {saving ? "Saving..." : "Save Changes"}
-                </button>
-              </div>
+            <div className="flex justify-end mt-4">
+              <button className="glass-btn glass-btn-primary py-2 px-6 rounded-lg text-sm font-semibold" disabled={saving} onClick={handleSave}>
+                {saving ? "Saving..." : "Save Changes"}
+              </button>
             </div>
           </div>
         </div>
