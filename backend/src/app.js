@@ -29,12 +29,19 @@ app.use(express.json());
 
 app.use("/api/notes", notesRoutes);
 
-if (process.env.NODE_ENV === "production") {
-  app.use(express.static(path.join(_dirname,"../frontend/dist")));
+import fs from 'fs';
 
-app.get("*", (req, res) => {
-  res.sendFile(path.join(_dirname, "../frontend","dist", "index.html"));
-});
+const frontendDistPath = path.join(_dirname, "../frontend/dist");
+
+if (fs.existsSync(frontendDistPath)) {
+  app.use(express.static(frontendDistPath));
+  app.get("*", (req, res) => {
+    res.sendFile(path.join(frontendDistPath, "index.html"));
+  });
+} else {
+  app.get("/", (req, res) => {
+    res.send("Notely API is running...");
+  });
 }
 
 connectDB().then(() => {
