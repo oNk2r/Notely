@@ -2,12 +2,16 @@ import express from 'express';
 import cors from 'cors';
 import dotenv from 'dotenv';
 import path from 'path';
+import dns from "dns";
 
 
 import notesRoutes from './routes/notesRoutes.js';
 import { connectDB } from './config/db.js';
 import rateLimiter from './middleware/rateLimiter.js';
+    
 
+// Set DNS servers for MongoDB SRV resolution to prevent local ISP resolution issues
+dns.setServers(["1.1.1.1", "8.8.8.8"]);
 
 
 dotenv.config();
@@ -22,10 +26,7 @@ app.use(cors({
 }
 
 
-app.use(express.json()); // Middleware to parse JSON bodies
-
-// Disabled rate limiting for development - uncomment to enable
-// app.use(rateLimiter);
+app.use(express.json());
 
 app.use("/api/notes", notesRoutes);
 
